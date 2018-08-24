@@ -312,7 +312,6 @@ BEGIN
                                         }
                                       },
                                       save: function(event, data){
-                                        console.log("save...", this, data);
                                         return true;
                                       },
                                       close: function(event, data){
@@ -339,7 +338,6 @@ BEGIN
                                         if ("' || p_region.attribute_20 || '" == "Y" && data.targetType == "title") {
                                             data.node.editStart();
                                         }
-                                        console.log(data.node);
                                     },
                                     
                                     select: function(event, data) {
