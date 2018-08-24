@@ -14,15 +14,15 @@ TYPE rec IS RECORD (value varchar2(50),
                          link VARCHAR2(100),
                          lvl number,
                          parent_id varchar2(2000),
-                         custom1 VARCHAR2(100),
-                         custom2 VARCHAR2(100),
-                         custom3 VARCHAR2(100),
-                         custom4 VARCHAR2(100),
-                         custom5 VARCHAR2(100),
-                         custom6 VARCHAR2(100),
-                         custom7 VARCHAR2(100),
-                         custom8 VARCHAR2(100),
-                         custom9 VARCHAR2(100)
+                         custom1 VARCHAR2(2000),
+                         custom2 VARCHAR2(2000),
+                         custom3 VARCHAR2(2000),
+                         custom4 VARCHAR2(2000),
+                         custom5 VARCHAR2(2000),
+                         custom6 VARCHAR2(2000),
+                         custom7 VARCHAR2(2000),
+                         custom8 VARCHAR2(2000),
+                         custom9 VARCHAR2(2000)
                          );
 l_mytype rec;
 l_tree varchar2(32767);
@@ -520,23 +520,23 @@ is
     l_stmt varchar2(32767) := apex_application.g_x02;
     n pls_integer := apex_application.g_x03;
     mycur SYS_REFCURSOR;
-    TYPE rec IS RECORD (value varchar2(50),
-                         name VARCHAR2(2000),
-                         tooltip VARCHAR2(100),
-                         icon VARCHAR2(100),
-                         link VARCHAR2(100),
-                         lvl number,
-                         parent_id varchar2(100),
-                         custom1 VARCHAR2(100),
-                         custom2 VARCHAR2(100),
-                         custom3 VARCHAR2(100),
-                         custom4 VARCHAR2(100),
-                         custom5 VARCHAR2(100),
-                         custom6 VARCHAR2(100),
-                         custom7 VARCHAR2(100),
-                         custom8 VARCHAR2(100),
-                         custom9 VARCHAR2(100)
-                         );
+	TYPE rec IS RECORD (value varchar2(50),
+							 name VARCHAR2(2000),
+							 tooltip VARCHAR2(100),
+							 icon VARCHAR2(100),
+							 link VARCHAR2(100),
+							 lvl number,
+							 parent_id varchar2(2000),
+							 custom1 VARCHAR2(2000),
+							 custom2 VARCHAR2(2000),
+							 custom3 VARCHAR2(2000),
+							 custom4 VARCHAR2(2000),
+							 custom5 VARCHAR2(2000),
+							 custom6 VARCHAR2(2000),
+							 custom7 VARCHAR2(2000),
+							 custom8 VARCHAR2(2000),
+							 custom9 VARCHAR2(2000)
+							 );
     l_mytype rec;
     l_json CLOB;
     l_query varchar2(32767);
