@@ -288,7 +288,7 @@ wwv_flow_api.create_plugin(
 '                                    extensions: '' || l_ext || '',',
 '                                    ',
 '                                    persist: {',
-'                                        cookiePrefix: '' || :APP_ID || :APP_PAGE_ID || regionid || '', //unique storage identifier for every tree',
+'                                        cookiePrefix: "'' || :APP_ID || :APP_PAGE_ID || regionid || ''", //unique storage identifier for every tree',
 '                                        expandLazy: true, //needed because of lazy loading',
 '                                        store: "auto", //try sessionStorage, otherwise cookies',
 '                                        types: "expanded" //only store expanded state',
