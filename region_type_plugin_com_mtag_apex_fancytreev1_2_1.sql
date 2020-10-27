@@ -6,28 +6,51 @@ whenever sqlerror exit sql.sqlcode rollback
 -- ORACLE Application Express (APEX) export file
 --
 -- You should run the script connected to SQL*Plus as the Oracle user
--- APEX_180100 or as the owner (parsing schema) of the application.
+-- APEX_200100 or as the owner (parsing schema) of the application.
 --
 -- NOTE: Calls to apex_application_install override the defaults below.
 --
 --------------------------------------------------------------------------------
 begin
 wwv_flow_api.import_begin (
- p_version_yyyy_mm_dd=>'2018.04.04'
-,p_release=>'18.1.0.00.45'
-,p_default_workspace_id=>45787007227056927033
-,p_default_application_id=>31259
-,p_default_owner=>'SM_SCHEMA'
+ p_version_yyyy_mm_dd=>'2020.03.31'
+,p_release=>'20.1.0.00.13'
+,p_default_workspace_id=>1510304082555512
+,p_default_application_id=>109
+,p_default_id_offset=>0
+,p_default_owner=>'XX_APEX'
 );
+end;
+/
+ 
+prompt APPLICATION 109 - Install Base
+--
+-- Application Export:
+--   Application:     109
+--   Name:            Install Base
+--   Date and Time:   08:38 Tuesday October 27, 2020
+--   Exported By:     MLIE
+--   Flashback:       0
+--   Export Type:     Component Export
+--   Manifest
+--     PLUGIN: 47355179754608230864
+--   Manifest End
+--   Version:         20.1.0.00.13
+--   Instance ID:     249750644945268
+--
+
+begin
+  -- replace components
+  wwv_flow_api.g_mode := 'REPLACE';
 end;
 /
 prompt --application/shared_components/plugins/region_type/com_mtag_apex_fancytreev1_2
 begin
 wwv_flow_api.create_plugin(
- p_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355179754608230864)
 ,p_plugin_type=>'REGION TYPE'
-,p_name=>'COM.MTAG.APEX.FANCYTREEV1.2'
-,p_display_name=>'MT APEX FancyTree 1.2'
+,p_name=>'COM.MTAG.APEX.FANCYTREEV1.2.1'
+,p_display_name=>'MT APEX FancyTree 1.2.1'
 ,p_supported_ui_types=>'DESKTOP'
 ,p_plsql_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'FUNCTION tree_render (',
@@ -570,7 +593,7 @@ wwv_flow_api.create_plugin(
 '    l_mytype rec;',
 '    l_json CLOB;',
 '    l_query varchar2(32767);',
-'    l_check_children varchar2(2000);',
+'    l_check_children varchar2(32767);',
 '    l_cnt pls_integer := 0;',
 '    v_cursor_id integer;',
 '    v_col_cnt integer;',
@@ -631,7 +654,8 @@ wwv_flow_api.create_plugin(
 'EXCEPTION',
 '    WHEN OTHERS THEN',
 '        sys.htp.p(sqlerrm);',
-'end;'))
+'end;',
+''))
 ,p_api_version=>2
 ,p_render_function=>'tree_render'
 ,p_ajax_function=>'ajax_getchildren'
@@ -645,15 +669,15 @@ wwv_flow_api.create_plugin(
 'You can easily set up dynamic actions for the right-click options, or for the drag-and-drop functionality. To do this, just create a dynamic action and set the "Event" property to the corresponding event. Then, set the selection type to jQuery Select'
 ||'or and the value of the selecter to "#tree" + the static ID. For example, with a static ID of tree you would use "#tree3".',
 'Make sure to create 3 items that hold the node ID, parent ID and the previous parent ID.'))
-,p_version_identifier=>'1.2'
+,p_version_identifier=>'1.2.1'
 ,p_files_version=>224
 );
 end;
 /
 begin
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47113899174760965589)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47146617090253812472)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>1
 ,p_display_sequence=>10
@@ -666,8 +690,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Determine if Edit Mode should be allowed. Edit mode includes Drag-and-drop, as well as editing the node title directly. It is also possible to add "Dynamic Mode", which allows the user to switch between Edit Mode and View Mode.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325082819292881585)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357800734785728468)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>2
 ,p_display_sequence=>20
@@ -677,15 +701,15 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325502875914291677)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47358220791407138560)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 ,p_help_text=>'The value of this attribute determines whether the first right-click option is displayed.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325083442752882773)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357801358245729656)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>3
 ,p_display_sequence=>30
@@ -695,15 +719,15 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325502875914291677)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47358220791407138560)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 ,p_help_text=>'The value of this attribute determines whether the second right-click option is displayed.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325084089757883927)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357802005250730810)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>4
 ,p_display_sequence=>40
@@ -713,15 +737,15 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325502875914291677)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47358220791407138560)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 ,p_help_text=>'The value of this attribute determines whether the third right-click option is displayed.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325168387987187016)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357886303480033899)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>5
 ,p_display_sequence=>70
@@ -732,8 +756,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Link this attribute to the page item that will hold the selected node id. The page item can be hidden or displayed in some way if you would like to display it.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325169676635197676)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357887592128044559)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>6
 ,p_display_sequence=>71
@@ -744,8 +768,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Link this attribute to the page item that will hold the current parent id. The page item can be hidden or displayed in some way.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325170299964199213)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357888215457046096)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>7
 ,p_display_sequence=>72
@@ -758,8 +782,8 @@ wwv_flow_api.create_plugin_attribute(
 'This item is used internally to check if the parent of the dropped item has changed.'))
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(17327666744713250178)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17360384660206097061)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>8
 ,p_display_sequence=>81
@@ -770,14 +794,14 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(17431198242540263513)
+,p_depending_on_attribute_id=>wwv_flow_api.id(17463916158033110396)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325202929973125753)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357920845465972636)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>9
 ,p_display_sequence=>21
@@ -787,15 +811,15 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'Add'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325082819292881585)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47357800734785728468)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 ,p_help_text=>'This attribute is used to determine what the text of the first right-click option will be.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325203532818127892)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357921448310974775)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>10
 ,p_display_sequence=>31
@@ -805,15 +829,15 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'Edit'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325083442752882773)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47357801358245729656)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 ,p_help_text=>'This attribute is used to determine what the text of the second right-click option will be.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325204117299129437)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357922032791976320)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>11
 ,p_display_sequence=>41
@@ -823,15 +847,15 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'Delete'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325084089757883927)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47357802005250730810)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
 ,p_help_text=>'This attribute is used to determine what the text of the third right-click option will be.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325258300863041723)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357976216355888606)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>12
 ,p_display_sequence=>22
@@ -841,7 +865,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'ui-icon-plus'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325082819292881585)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47357800734785728468)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -851,8 +875,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'This option determines what icon will be displayed for the first right-click option. Available icons are: http://www.petefreitag.com/cheatsheets/jqueryui-icons/'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325260290492061376)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357978205984908259)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>13
 ,p_display_sequence=>32
@@ -862,7 +886,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'ui-icon-pencil'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325083442752882773)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47357801358245729656)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -872,8 +896,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'This option determines what icon will be displayed for the second right-click option. Available icons are: http://www.petefreitag.com/cheatsheets/jqueryui-icons/'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325260836894064076)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357978752386910959)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>14
 ,p_display_sequence=>42
@@ -883,7 +907,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'ui-icon-trash'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47325084089757883927)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47357802005250730810)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -893,8 +917,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'This option determines what icon will be displayed for the third right-click option. Available icons are: http://www.petefreitag.com/cheatsheets/jqueryui-icons/'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325502875914291677)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358220791407138560)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>16
 ,p_display_sequence=>19
@@ -907,8 +931,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Determine if the context menu should pop up if the user right-clicks. Once this option is set to yes, the specific settings for the right-click options are shown.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325522462225396812)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358240377718243695)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>17
 ,p_display_sequence=>12
@@ -918,7 +942,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47113899174760965589)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47146617090253812472)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -929,8 +953,8 @@ wwv_flow_api.create_plugin_attribute(
 '</p>'))
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325524286474419677)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358242201967266560)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>18
 ,p_display_sequence=>11
@@ -940,7 +964,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47113899174760965589)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47146617090253812472)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -955,8 +979,8 @@ wwv_flow_api.create_plugin_attribute(
 '</p>'))
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(17431739965318498268)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17464457880811345151)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>19
 ,p_display_sequence=>229
@@ -968,8 +992,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Determine whether the Expand and Collapse All buttons should be shown.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47325824071226120397)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358541986718967280)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>20
 ,p_display_sequence=>13
@@ -979,7 +1003,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_show_in_wizard=>false
 ,p_default_value=>'N'
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(47113899174760965589)
+,p_depending_on_attribute_id=>wwv_flow_api.id(47146617090253812472)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -988,8 +1012,8 @@ wwv_flow_api.create_plugin_attribute(
 'Users can enter node by pressing "F2" when a node is selected, by shift-click on a node, or by pressing mac-enter.'))
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47158623363263048628)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47191341278755895511)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>21
 ,p_display_sequence=>50
@@ -1002,8 +1026,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Determine if the user should be able to search for a specific node. If set to "Yes", a text box will appear which takes the search string as a parameter.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47162907819991293483)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47195625735484140366)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>22
 ,p_display_sequence=>45
@@ -1023,8 +1047,8 @@ wwv_flow_api.create_plugin_attribute(
 'To see how to use this functionality, have a look at the sample application of this plug-in.'))
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(17431236540836170690)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17463954456329017573)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>23
 ,p_display_sequence=>230
@@ -1039,8 +1063,8 @@ wwv_flow_api.create_plugin_attribute(
 ' If ''No'' is selected, the tree opens in a collapsed state, as is default.'))
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(17431198242540263513)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17463916158033110396)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>24
 ,p_display_sequence=>80
@@ -1053,8 +1077,8 @@ wwv_flow_api.create_plugin_attribute(
 ,p_help_text=>'Determine if the tree should display checkboxes for each item. The selected items are stored in a page item.'
 );
 wwv_flow_api.create_plugin_attribute(
- p_id=>wwv_flow_api.id(47163460361575760382)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47196178277068607265)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_attribute_scope=>'COMPONENT'
 ,p_attribute_sequence=>25
 ,p_display_sequence=>82
@@ -1063,7 +1087,7 @@ wwv_flow_api.create_plugin_attribute(
 ,p_is_required=>true
 ,p_show_in_wizard=>false
 ,p_is_translatable=>false
-,p_depending_on_attribute_id=>wwv_flow_api.id(17431198242540263513)
+,p_depending_on_attribute_id=>wwv_flow_api.id(17463916158033110396)
 ,p_depending_on_has_to_exist=>true
 ,p_depending_on_condition_type=>'EQUALS'
 ,p_depending_on_expression=>'Y'
@@ -1073,8 +1097,8 @@ wwv_flow_api.create_plugin_attribute(
 'The ID of the node is the value that is provided by your query.'))
 );
 wwv_flow_api.create_plugin_std_attribute(
- p_id=>wwv_flow_api.id(47325131745026891782)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357849660519738665)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_name=>'SOURCE_SQL'
 ,p_sql_min_column_count=>7
 ,p_sql_max_column_count=>16
@@ -1114,32 +1138,32 @@ wwv_flow_api.create_plugin_std_attribute(
 'The icon can be any icon from Front APEX. See https://apex.oracle.com/pls/apex/f?p=42:icons for more information. <br>'))
 );
 wwv_flow_api.create_plugin_event(
- p_id=>wwv_flow_api.id(47324100865098509538)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47356818780591356421)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_name=>'addevent'
 ,p_display_name=>'firstevent'
 );
 wwv_flow_api.create_plugin_event(
- p_id=>wwv_flow_api.id(47324133413862057045)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47356851329354903928)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_name=>'deleteevent'
 ,p_display_name=>'thirdevent'
 );
 wwv_flow_api.create_plugin_event(
- p_id=>wwv_flow_api.id(47325200649422032492)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357918564914879375)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_name=>'dropped'
 ,p_display_name=>'itemDroppedToNewSpot'
 );
 wwv_flow_api.create_plugin_event(
- p_id=>wwv_flow_api.id(47324133157650057043)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47356851073142903926)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_name=>'editevent'
 ,p_display_name=>'secondevent'
 );
 wwv_flow_api.create_plugin_event(
- p_id=>wwv_flow_api.id(47325826815533152193)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358544731025999076)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_name=>'saveevent'
 ,p_display_name=>'saveevent'
 );
@@ -1267,8 +1291,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(17431202787122316396)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17463920702615163279)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.persist.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -1301,8 +1325,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(17431203287497353294)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17463921202990200177)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'js.cookie-2.1.4.min.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -1328,8 +1352,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(17431272155705140626)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(17463990071197987509)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'LICENSE.txt'
 ,p_mime_type=>'text/plain'
 ,p_file_charset=>'utf-8'
@@ -3885,8 +3909,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47163103728547889298)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47195821644040736181)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery-ui.min.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -4459,8 +4483,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47163113607282099541)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47195831522774946424)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.min.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -4679,8 +4703,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47163434704618482621)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47196152620111329504)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'ui.fancytree.min.css'
 ,p_mime_type=>'text/css'
 ,p_file_charset=>'utf-8'
@@ -4751,8 +4775,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322475164496453519)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355193079989300402)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'icons.gif'
 ,p_mime_type=>'image/gif'
 ,p_file_charset=>'utf-8'
@@ -4788,8 +4812,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322475725377453532)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355193640870300415)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.contextMenu.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -5003,8 +5027,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322476173258453533)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355194088751300416)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.dnd.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -5109,8 +5133,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322476503134453534)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355194418627300417)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.edit.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -5239,8 +5263,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322477344593453536)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355195260086300419)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.ui-contextmenu.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -5288,8 +5312,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322478170911453539)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355196086404300422)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'loading.gif'
 ,p_mime_type=>'image/gif'
 ,p_file_charset=>'utf-8'
@@ -5574,8 +5598,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322478537374453539)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355196452867300422)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'ui.fancytree.css'
 ,p_mime_type=>'text/css'
 ,p_file_charset=>'utf-8'
@@ -5599,8 +5623,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322478967656453540)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355196883149300423)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'vline.gif'
 ,p_mime_type=>'image/gif'
 ,p_file_charset=>'utf-8'
@@ -5624,8 +5648,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47322479311797453541)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47355197227290300424)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'vline-rtl.gif'
 ,p_mime_type=>'image/gif'
 ,p_file_charset=>'utf-8'
@@ -5939,8 +5963,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47324069222554040392)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47356787138046887275)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'apex-icons.css'
 ,p_mime_type=>'text/css'
 ,p_file_charset=>'utf-8'
@@ -7630,8 +7654,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47325269620586283426)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47357987536079130309)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree2.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -7794,8 +7818,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47325854126058611179)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358572041551458062)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.table.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -7926,8 +7950,8 @@ end;
 /
 begin
 wwv_flow_api.create_plugin_file(
- p_id=>wwv_flow_api.id(47325878155531138715)
-,p_plugin_id=>wwv_flow_api.id(47322461839115383981)
+ p_id=>wwv_flow_api.id(47358596071023985598)
+,p_plugin_id=>wwv_flow_api.id(47355179754608230864)
 ,p_file_name=>'jquery.fancytree.filter.js'
 ,p_mime_type=>'application/javascript'
 ,p_file_charset=>'utf-8'
@@ -7935,8 +7959,9 @@ wwv_flow_api.create_plugin_file(
 );
 end;
 /
+prompt --application/end_environment
 begin
-wwv_flow_api.import_end(p_auto_install_sup_obj => nvl(wwv_flow_application_install.get_auto_install_sup_obj, false), p_is_component_import => true);
+wwv_flow_api.import_end(p_auto_install_sup_obj => nvl(wwv_flow_application_install.get_auto_install_sup_obj, false));
 commit;
 end;
 /

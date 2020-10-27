@@ -538,7 +538,7 @@ is
     l_mytype rec;
     l_json CLOB;
     l_query varchar2(32767);
-    l_check_children varchar2(2000);
+    l_check_children varchar2(32767);
     l_cnt pls_integer := 0;
     v_cursor_id integer;
     v_col_cnt integer;
